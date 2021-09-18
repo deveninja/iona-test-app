@@ -22,9 +22,6 @@ const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) =
      * inside the reducer
      * =======================================================================
      */
-    console.log(props)
-    console.log(props.match)
-    console.log(props.match.params)
 
     useEffect(() => {
         if (cats['h19-vtIeX']) {
