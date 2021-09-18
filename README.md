@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### CI/CD 
+### `yarn deploy:heroku`
+
+Build the project and push to github [iona-test-app](https://github.com/deveninja/iona-test-app)\
+And then deploy to heroku  [Live URL](https://iona-test-app.herokuapp.com/)
+
 ### `yarn start`
 
 Runs the app in the development mode.\
