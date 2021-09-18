@@ -1,17 +1,18 @@
 import { getCat } from 'actions'
-import { Cat } from 'interfaces/cat'
-import { useEffect, useMemo, useState } from 'react'
+import Notification from 'components/common/Notification'
+import { Cat, CatList } from 'interfaces/cat'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { RouteComponentProps } from 'react-router'
 import { AppState } from 'store'
 
 
-
-const CatDetails: React.FC = () => {
+const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     const initialCatState: Cat = useMemo(() => ({ id: '', url: '' }), [])
 
     const [cat, setCat] = useState<Cat>(initialCatState)
-    const cats = useSelector<AppState, { [key: string]: Cat }>(state => state.catsReducer)
+    const cats = useSelector<AppState, CatList>(state => state.catsReducer)
     const dispatch = useDispatch()
 
     /**
@@ -21,9 +22,11 @@ const CatDetails: React.FC = () => {
      * inside the reducer
      * =======================================================================
      */
+    console.log(props)
+    console.log(props.match)
+    console.log(props.match.params)
 
     useEffect(() => {
-
         if (cats['h19-vtIeX']) {
             setCat(cats['h19-vtIeX'])
         }
@@ -38,6 +41,7 @@ const CatDetails: React.FC = () => {
 
     return (
         <div className="App">
+            <Notification />
             <img src={cat?.url} height={'50%'} width={'50%'} alt="Cat" />
             {cat?.breeds?.[0]?.name}
         </div>

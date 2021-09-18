@@ -1,4 +1,4 @@
-import { Cat } from 'interfaces/cat'
+import { Cat, CatList } from 'interfaces/cat'
 
 /**
  * ===============================================================================
@@ -21,11 +21,19 @@ export const _delete = (rawObject: any, prop: string) => {
 
 /**
  * ===============================================================================
- * @argument rawArray - typeof Array
+ * @description - This maps the array and convert it into an object and uses the
+ * item ID as the object key and the item as the object value
+ * @param rawArray - typeof Array
+ * @param state - typeof Object
+ * @return { [key: string]: Cat }
  * ===============================================================================
  */
-export const _mapKeys = (state = {}, rawArray: any[]) => {
-    let newObject: any = { ...state };
+export const _mapKeys = (state = {}, rawArray: Cat[]) => {
+
+    // copies the current app state
+    const newObject: CatList = { ...state };
+
+    // Overwrites any existing object or add a new one
     new Set(rawArray).forEach((i: Cat) => newObject[i.id] = i)
 
     return newObject

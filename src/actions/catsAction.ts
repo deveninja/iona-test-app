@@ -1,13 +1,15 @@
 import catAPI from 'api/catApi'
 import { AxiosResponse } from 'axios'
 import { CatsType } from 'enums/actionTypes'
+import { SearchParamsType } from 'interfaces/searchParams'
 
 
-export const getCatBreed = (page = 1, id: string) => async (dispatch: any) => {
+export const getCatBreed = (params: SearchParamsType) => async (dispatch: any) => {
 
+    const { id, page, limit } = params
     try {
         const { data }: AxiosResponse = await catAPI.get(
-            `/images/search?page=${page}&limit=10&breed_id=${id}`
+            `/images/search?page=${page ?? 1}&limit=${limit ?? 10}&breed_id=${id}`
         )
 
         return (
