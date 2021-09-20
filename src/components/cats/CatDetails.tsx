@@ -1,13 +1,17 @@
 import { getCat } from 'actions'
-import Notification from 'components/common/Notification'
 import { Cat, CatList } from 'interfaces/cat'
 import React, { useEffect, useMemo, useState } from 'react'
+import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { AppState } from 'store'
 
 
 const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
+
+    const { params }: any = props.match
+    const { id, breed } = params
+    const { prevPath }: any = props.location.state
 
     const initialCatState: Cat = useMemo(() => ({ id: '', url: '' }), [])
 
@@ -24,23 +28,26 @@ const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) =
      */
 
     useEffect(() => {
-        if (cats['h19-vtIeX']) {
-            setCat(cats['h19-vtIeX'])
+        console.log(prevPath)
+        if (cats[breed]?.[id]) {
+            setCat(cats[breed][id])
         }
 
-        if (!cats['h19-vtIeX']) {
-            dispatch(getCat('h19-vtIeX'))
+        if (!cats[breed]?.[id]) {
+            dispatch(getCat(id, breed))
+
         }
 
-    }, [dispatch, cats])
+    }, [dispatch, breed, cats, id, prevPath])
 
+    console.log(props.location)
     /** ===================================================================== */
 
     return (
         <div className="App">
-            <Notification />
             <img src={cat?.url} height={'50%'} width={'50%'} alt="Cat" />
             {cat?.breeds?.[0]?.name}
+            <Button variant="secondary" onClick={() => props.history.push(`${prevPath}`)}>Go Back</Button>
         </div>
     )
 }

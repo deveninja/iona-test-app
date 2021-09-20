@@ -8,3 +8,10 @@ export interface NotificationType {
     delay?: number;
     title?: string;
 }
+
+export type ErrorObjType = {
+    show: boolean;
+    message: string;
+    title: string;
+}
+

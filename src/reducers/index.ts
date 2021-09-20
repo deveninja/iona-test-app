@@ -12,9 +12,15 @@ import { combineReducers } from 'redux'
 
 /** IMPORT REDUCERS */
 import catsReducer from 'reducers/catsReducer'
+import dogsReducer from 'reducers/dogsReducer'
+import breedsReducer from 'reducers/breedsReducer'
+import globalReducer from 'reducers/globalReducer'
 
 const rootReducer = combineReducers({
-    catsReducer
+    catsReducer,
+    dogsReducer,
+    breedsReducer,
+    globalReducer
 })
 
 

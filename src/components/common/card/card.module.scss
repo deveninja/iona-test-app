@@ -1,0 +1,23 @@
+.imageWrapper {
+    height: 300px;
+    img {
+        border-radius: 5px 5px 0 0;
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+}
+
+.card {
+    transition: all ease-in 200ms;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    min-width: 300px;
+    max-height: 400px;
+
+    &:hover {
+        transform: scale(1.01);
+        box-shadow: 15px 15px 10px rgba($color: hsl(0, 1%, 25%), $alpha: .6);
+    }
+}

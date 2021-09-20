@@ -1,0 +1,46 @@
+.catList {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  
+
+    .wrapper {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        .paddedFlex {
+            display: flex;
+            position: absolute;            
+            padding: 2rem;  
+            bottom: 0;
+            top: 0;
+        }
+        .listArea {            
+            left: 20%;
+            width: 80%;
+            border: 1px solid hsl(0, 0%, 46%);
+            border-radius: 5px;
+            overflow: auto;
+            flex-wrap: wrap;
+            gap: 2rem;
+            
+            * {
+                flex-grow: 1;
+            }
+        }    
+    
+        .selectArea {            
+            display: flex;
+            flex-direction: column;
+            justify-content:space-between;
+            width: 20%;
+            padding: 0 1rem 0 0;
+        }
+    }
+
+    
+
+    .title {
+        font-size: 2rem;
+    }
+}

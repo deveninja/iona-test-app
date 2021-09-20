@@ -1,11 +1,23 @@
 export enum CatsType {
     GET_CAT_BREED = "GET_CAT_BREED",
+    GET_CAT_BREED_LIST = "GET_CAT_BREED_LIST",
     GET_CAT = "GET_CAT",
     ADD_CAT = "ADD_CAT",
     EDIT_CAT = "EDIT_CAT",
     DELETE_CAT = "DELETE_CAT"
 }
 
-export enum BreedsType {
-    GET_BREED = "GET_BREED"
+export enum DogsType {
+    GET_DOG_BREED = "GET_DOG_BREED",
+    GET_DOG_BREED_LIST = "GET_DOG_BREED_LIST",
+    GET_DOG = "GET_DOG",
+    ADD_DOG = "ADD_DOG",
+    EDIT_DOG = "EDIT_DOG",
+    DELETE_DOG = "DELETE_DOG"
+}
+
+export enum GlobalType {
+    LOADING_START = "LOADING_START",
+    LOADING_STOP = "LOADING_STOP",
+    ERROR = "ERROR"
 }

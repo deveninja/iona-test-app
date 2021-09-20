@@ -1,0 +1,22 @@
+.home {
+    .card {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-bottom: 5rem;
+    }
+
+    .row {
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-content: center;
+        gap: 20px;
+    }
+}

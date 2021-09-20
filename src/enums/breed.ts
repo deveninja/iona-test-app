@@ -1,3 +1,5 @@
 export enum Breed {
-    Abyssinian = 'abys',
+    CATS = 'catsBreed',
+    DOGS = 'dogsBreed',
+    BIRDS = 'birdsBreed',
 }
