@@ -19,7 +19,6 @@ export const getCatBreed = (params: SearchParamsType) => async (dispatch: AppDis
             `/images/search?page=${page ?? 1}&limit=${limit ?? 10}&breed_id=${id}`
         )
 
-
         return (
             dispatch({
                 type: CatsType.GET_CAT_BREED,
@@ -105,6 +104,7 @@ export const getCatBreedList = () => async (dispatch: AppDispatch) => {
                 payload: false
             })
         )
+
     } catch (error) {
         dispatch({
             type: GlobalType.LOADING_STOP,
