@@ -1,35 +1,34 @@
 import { getCat } from 'actions'
 import { Cat, CatList } from 'interfaces/cat'
+import { MatchParams, StateType } from 'interfaces/routeProps'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
+import { RouteComponentProps, useLocation } from 'react-router-dom'
 import { AppState } from 'store'
 
 import styles from './cat.module.scss'
+import { AppRoute } from 'enums/route'
 
-const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
+const CatDetails: React.FC<RouteComponentProps<MatchParams>> = (props: RouteComponentProps<MatchParams>) => {
 
     const initialCatState: Cat = useMemo(() => ({ id: '', url: '' }), [])
 
     const [cat, setCat] = useState<Cat>(initialCatState)
     const cats = useSelector<AppState, CatList>(state => state.catsReducer)
-    const dispatch = useDispatch()
 
-    const {
-        history,
-        match: {
-            params: {
-                id,
-                breed
-            }
-        },
-        location: {
-            state: {
-                prevPath
-            }
-        }
-    }: any = props
+
+    const dispatch = useDispatch()
+    const { state } = useLocation<StateType>()
+
+    const { history, match }: RouteComponentProps<MatchParams> = props
+    const { params } = match
+
+
+    const fallBackUrl = useMemo(() =>
+        (state?.prevPath ?? `${AppRoute.Cats}/${params.breed}`),
+        [state?.prevPath, params.breed]
+    )
 
     /**
      * =======================================================================
@@ -41,15 +40,15 @@ const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) =
 
     useEffect(() => {
 
-        if (cats[breed]?.[id]) {
-            setCat(cats[breed][id])
+        if (cats[params?.breed]?.[params?.id]) {
+            setCat(cats[params?.breed][params?.id])
         }
 
-        if (!cats[breed]?.[id]) {
-            dispatch(getCat(id, breed))
+        if (!cats[params?.breed]?.[params?.id]) {
+            dispatch(getCat(params?.id, params?.breed))
         }
 
-    }, [dispatch, breed, cats, id, prevPath])
+    }, [dispatch, params?.breed, cats, params?.id])
 
     /** ===================================================================== */
 
@@ -61,20 +60,14 @@ const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) =
      * data-testid="breedDescription"
      */
     return (
-        // <div className="App">
-
-        //     <img src={cat?.url} height={'50%'} width={'50%'} alt="Cat" />
-        //     {cat?.breeds?.[0]?.name}
-        //     <Button
-        //         variant="secondary"
-        //         onClick={() => history.push(`${prevPath}`)}
-        //     >
-        //         Go Back
-        //     </Button>
-        // </div>
         <div className={styles.catList}>
             <Row>
-                <span data-testid="pageHeading" className={styles.title}>{cat?.breeds?.[0]?.name ?? 'The Cat'}</span>
+                <span
+                    data-testid="pageHeading"
+                    className={styles.title}
+                >
+                    {cat?.breeds?.[0]?.name ?? 'The Cat'}
+                </span>
             </Row>
             <div className={styles.wrapper}>
                 <Row>
@@ -103,7 +96,7 @@ const CatDetails: React.FC<RouteComponentProps> = (props: RouteComponentProps) =
                             <Button
                                 data-testid="returnHomeBtn"
                                 variant="secondary"
-                                onClick={() => history.push(`${prevPath}`)}
+                                onClick={() => history.push(fallBackUrl)}
                             >
                                 Back to list
                             </Button>
