@@ -8,9 +8,9 @@ const DropDown: React.FC<DropDownProps> = (props: DropDownProps) => {
     const { options, onChange, selected } = props
 
     const renderDropDown = useCallback((arr: DropDownType[]) => {
-        return arr.map((item: DropDownType) => {
+        return arr.map((item: DropDownType, index: number) => {
             return (
-                <option key={item.id} value={item.id}>{item.name}</option>
+                <option key={item.id + index} value={item.id}>{item.name}</option>
             )
         })
     }, [])

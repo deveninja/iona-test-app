@@ -2,10 +2,10 @@ import { getCatBreed, getCatBreedList } from 'actions'
 import CardComponent from 'components/common/card/Card'
 import DropDown from 'components/common/dropdown/DropDownList'
 import SpinnerComponent from 'components/common/snipper/Spinner'
+import { Breed } from 'enums/breed'
 import { AppRoute } from 'enums/route'
-import { DropDownType } from 'interfaces/dropdown'
 import { useMemo, useEffect, useState, useCallback } from 'react'
-import { Button, Col, Row } from 'react-bootstrap'
+import { Alert, Button, Col, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import { AppState } from 'store'
@@ -14,14 +14,33 @@ import styles from './cat.module.scss'
 
 const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     const [currentBreed, setCurrentBreed] = useState('')
-    const catsBreedList: DropDownType[] = useSelector<AppState, DropDownType[]>(state => state.breedsReducer.catsBreed)
+    const [limit,] = useState(10)
+    const catsBreedList: any = useSelector<AppState, any>(state => state.breedsReducer[Breed.CATS])
     const cats = useSelector<AppState, any>(state => state.catsReducer)
     const loading = useSelector<AppState, boolean>(state => state.globalReducer.loadingState)
 
     const dispatch = useDispatch()
 
-    const { match, history } = props
-    const { breed }: any = match.params
+    const {
+        history,
+        match: {
+            params: {
+                breed
+            }
+        }
+    }: any = props
+
+
+    // Memoise 
+    const showBtn = useMemo(() => {
+        const len = cats[currentBreed] ? Object.values(cats[currentBreed]).length : 0
+        return catsBreedList?.[breed]?.page > 3 || len >= 15 || catsBreedList?.[breed]?.final
+
+    }, [catsBreedList, breed, cats, currentBreed])
+
+
+    const page = useMemo(() => (catsBreedList?.[breed]?.page ?? 1), [catsBreedList, breed])
+    const options = useMemo(() => (catsBreedList ?? []), [catsBreedList])
 
 
     // Renders the cat card components
@@ -44,7 +63,6 @@ const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
         )
     }, [currentBreed])
 
-    const options: DropDownType[] = useMemo(() => (catsBreedList ?? []), [catsBreedList])
 
     // onchange handler that sets the current breed selected and modifies
     // the route
@@ -57,7 +75,7 @@ const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     useEffect(() => {
 
-        if (!catsBreedList.length) {
+        if (!Object.values(catsBreedList).length) {
             dispatch(getCatBreedList())
         }
 
@@ -74,10 +92,12 @@ const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
     useEffect(() => {
         if (currentBreed) {
             if (!cats?.[currentBreed]) {
-                dispatch(getCatBreed({ id: currentBreed }))
+                dispatch(getCatBreed({ id: currentBreed, limit, page }))
             }
+
         }
-    }, [dispatch, currentBreed, cats])
+
+    }, [dispatch, currentBreed, cats, limit, page])
     /** ===================================================================== */
 
 
@@ -87,34 +107,85 @@ const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
 
 
+    /**
+     * @SPECS
+     * data-testid="pageHeading"
+     * data-testid="breedDropdown"
+     * data-testid="breedMoreBtn"
+     * data-testid="returnHomeBtn"
+     * data-testid="listSection"
+     */
+
     return (
         <div className={styles.catList}>
             <Row>
-                <span className={styles.title}>Cat Browser</span>
+                <span data-testid="pageHeading" className={styles.title}>Cat Browser</span>
             </Row>
             <div className={styles.wrapper}>
                 <Row>
                     <Col lg={3}>
                         <div className={`${styles.paddedFlex} ${styles.selectArea}`}>
-                            <DropDown
-                                options={options}
-                                onChange={onSelectBreed}
-                                selected={currentBreed}
-                            />
-                            <Button variant="secondary" onClick={() => history.push(`${AppRoute.Home}`)}>Go Back</Button>
+                            <div>
+                                <DropDown
+                                    data-testid="breedDropdown"
+                                    options={Object.values(options)}
+                                    onChange={onSelectBreed}
+                                    selected={currentBreed}
+                                />
+                                {
+                                    !showBtn &&
+                                    breed &&
+                                    <Button
+                                        data-testid="breedMoreBtn"
+                                        variant="secondary"
+                                        onClick={() => dispatch(
+                                            getCatBreed({
+                                                id: currentBreed,
+                                                page,
+                                            })
+                                        )}
+                                    >
+                                        Load more {`${catsBreedList[breed]?.name} breed` ?? 'cats'}
+                                    </Button>
+                                }
+
+                            </div>
+                            <Button
+                                data-testid="returnHomeBtn"
+                                variant="secondary"
+                                onClick={() => history.push(`${AppRoute.Home}`)}
+                            >
+                                Back to Home
+                            </Button>
                         </div>
                     </Col>
                     <Col lg={9}>
-                        <div className={`${styles.paddedFlex} ${styles.listArea}`}>
+                        <div
+                            data-testid="listSection"
+                            className={`${styles.paddedFlex} 
+                            ${styles.contentArea}`}
+                        >
                             {
+                                // If the result has length of more then 0
                                 cats?.[currentBreed] &&
-                                Object.values(cats?.[currentBreed]).length &&
+                                Object.values(cats?.[currentBreed]).length > 0 &&
                                 renderCats(cats[currentBreed])
                             }
 
                             {
+                                // If After calling the api and the the result count
+                                // is ZERO
+                                cats?.[currentBreed] &&
+                                Object.values(cats?.[currentBreed]).length < 1 &&
+                                <Alert key={Date.now()} variant={'warning'}>
+                                    No Cats found in our database.
+                                </Alert>
+                            }
+
+                            {
+                                // While calling the endpoint
                                 loading && !cats?.[currentBreed]?.length &&
-                                <SpinnerComponent />
+                                <SpinnerComponent message="Loading list" />
                             }
 
                         </div>

@@ -21,3 +21,9 @@ export enum GlobalType {
     LOADING_STOP = "LOADING_STOP",
     ERROR = "ERROR"
 }
+
+
+export enum BreedType {
+    BREED_LIST_FINAL = "BREED_LIST_FINAL",
+    BREED_LIST_INCREMENT = "BREED_LIST_INCREMENT"
+}

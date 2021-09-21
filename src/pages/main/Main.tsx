@@ -1,4 +1,3 @@
-
 const Main: React.FC = ({ children }) => {
     return (
         <>

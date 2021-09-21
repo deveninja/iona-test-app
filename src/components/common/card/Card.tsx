@@ -6,7 +6,16 @@ import styles from './card.module.scss'
 
 
 const CardComponent = (props: CardComponentType) => {
-    const { imgSrc, title, btnLabel, text, link, size } = props
+
+    const {
+        imgSrc,
+        title,
+        btnLabel,
+        text,
+        link,
+        size
+    } = props
+
     return (
         <Card
             style={{ width: size }}

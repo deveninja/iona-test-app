@@ -11,25 +11,36 @@ const catsReducer = (state = initialState, action: AnyAction) => {
         case CatsType.GET_CAT_BREED:
             return {
                 ...state,
-                [action.payload.id]: { ..._mapKeys({ ...state[action.payload.id] }, action.payload.data) }
+                [action.payload.breed]: {
+                    ..._mapKeys({ ...state[action.payload.breed] }, action.payload.data)
+                }
             }
 
         case CatsType.GET_CAT:
             return {
                 ...state,
-                [action.payload.id]: { [action.payload.data.id]: action.payload.data }
+                [action.payload.breed]: {
+                    ...state[action.payload.breed],
+                    [action.payload.data.id]: action.payload.data
+                }
             }
 
         case CatsType.ADD_CAT:
             return {
                 ...state,
-                [action.payload.id]: { [action.payload.data.id]: action.payload.data }
+                [action.payload.breed]: {
+                    ...state[action.payload.breed],
+                    [action.payload.data.id]: action.payload.data
+                }
             }
 
         case CatsType.EDIT_CAT:
             return {
                 ...state,
-                [action.payload.id]: { [action.payload.data.id]: action.payload.data }
+                [action.payload.breed]: {
+                    ...state[action.payload.breed],
+                    [action.payload.data.id]: action.payload.data
+                }
             }
 
         case CatsType.DELETE_CAT:

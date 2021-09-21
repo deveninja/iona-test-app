@@ -36,6 +36,8 @@ export const _mapKeys = (state = {}, rawArray: Cat[]) => {
     // copies the current app state
     const newObject: CatList = { ...state };
 
+    if (!rawArray.length) return newObject
+
     // Overwrites any existing object or add a new one
     new Set(rawArray).forEach((i: any) => newObject[i.id] = i)
 

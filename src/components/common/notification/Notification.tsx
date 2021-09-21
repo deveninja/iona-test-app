@@ -13,7 +13,7 @@ const Notification: React.FC<NotificationType> = (props: NotificationType) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        setTimeout(() => {
+        let time1 = setTimeout(() => {
             dispatch({
                 type: GlobalType.ERROR,
                 payload: {
@@ -21,7 +21,11 @@ const Notification: React.FC<NotificationType> = (props: NotificationType) => {
                 }
             })
         }, 3000)
-    }, [AppErrorState, dispatch])
+
+        return () => {
+            clearTimeout(time1)
+        }
+    }, [AppErrorState.show, dispatch])
 
     useEffect(() => {
         setShow(AppErrorState.show)

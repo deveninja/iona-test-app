@@ -13,16 +13,22 @@ const HomePage: React.FC<RouteComponentProps> = (props: RouteComponentProps) => 
 
     const { match, location } = props
 
+
+    /**
+     * @SPECS
+     * data-testid="pageHeading"
+     * data-testid="cardSection"
+     */
+
     return (
         <Container className={styles.home}>
-            <Row className={styles.row}>
-                <>
-                    <h1>Select Species</h1>
+            <div data-testid="cardSection" className={styles.cardSection}>
+                <Row className={styles.row}>
+                    <h1 data-testid="pageHeading">Select Species</h1>
                     <Col lg={true} className={styles.card}>
                         <CardComponent
                             imgSrc={catImg}
                             title="Feline"
-                            size="300px"
                             link={{
                                 to: `${match.path}cats`,
                                 prevPath: location.pathname
@@ -33,15 +39,14 @@ const HomePage: React.FC<RouteComponentProps> = (props: RouteComponentProps) => 
                         <CardComponent
                             imgSrc={dogImg}
                             title="Canine"
-                            size="300px"
                             link={{
                                 to: `${match.path}dogs`,
                                 prevPath: location.pathname
                             }}
                         />
                     </Col>
-                </>
-            </Row>
+                </Row>
+            </div>
         </Container>
     )
 }

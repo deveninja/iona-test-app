@@ -3,20 +3,24 @@
         display: flex;
         justify-content: center;
         align-content: center;
+        max-width: 300px;
+
+        * {
+            flex-grow: 1;
+        }
     }
 
     h1 {
         display: flex;
         justify-content: center;
         align-content: center;
-        margin-bottom: 5rem;
     }
 
-    .row {
+    .row {        
         display: flex;
         height: 100vh;
-        justify-content: center;
-        align-content: center;
+        justify-content: space-evenly;
+        align-content:space-evenly;
         gap: 20px;
     }
 }
