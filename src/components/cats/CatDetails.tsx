@@ -25,6 +25,7 @@ const CatDetails: React.FC<RouteComponentProps<MatchParams>> = (props: RouteComp
     const { params } = match
 
 
+    // Memoise 
     const fallBackUrl = useMemo(() =>
         (state?.prevPath ?? `${AppRoute.Cats}/${params.breed}`),
         [state?.prevPath, params.breed]

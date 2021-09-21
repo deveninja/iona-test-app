@@ -4,6 +4,7 @@ import DropDown from 'components/common/dropdown/DropDownList'
 import SpinnerComponent from 'components/common/snipper/Spinner'
 import { Breed } from 'enums/breed'
 import { AppRoute } from 'enums/route'
+import { MatchParams } from 'interfaces/routeProps'
 import { useMemo, useEffect, useState, useCallback } from 'react'
 import { Alert, Button, Col, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
@@ -12,7 +13,7 @@ import { AppState } from 'store'
 
 import styles from './cat.module.scss'
 
-const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
+const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteComponentProps<MatchParams>) => {
     const [currentBreed, setCurrentBreed] = useState('')
     const [limit,] = useState(10)
     const catsBreedList: any = useSelector<AppState, any>(state => state.breedsReducer[Breed.CATS])
@@ -21,20 +22,15 @@ const CatList: React.FC<RouteComponentProps> = (props: RouteComponentProps) => {
 
     const dispatch = useDispatch()
 
-    const {
-        history,
-        match: {
-            params: {
-                breed
-            }
-        }
-    }: any = props
+    const { history, match }: RouteComponentProps<MatchParams> = props
+    const { params } = match
+    const { breed } = params
 
 
     // Memoise 
     const showBtn = useMemo(() => {
         const len = cats[currentBreed] ? Object.values(cats[currentBreed]).length : 0
-        return catsBreedList?.[breed]?.page > 3 || len >= 15 || catsBreedList?.[breed]?.final
+        return catsBreedList?.[breed]?.page > 4 || len >= 15 || catsBreedList?.[breed]?.final
 
     }, [catsBreedList, breed, cats, currentBreed])
 
