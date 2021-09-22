@@ -34,7 +34,7 @@ export const _delete = (rawObject: any, prop: string) => {
 export const _mapKeys = (state = {}, rawArray: Cat[]) => {
 
     // copies the current app state
-    const newObject: CatList = { ...state };
+    const newObject: CatList = { ...state }
 
     if (!rawArray.length) return newObject
 

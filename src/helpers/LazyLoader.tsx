@@ -10,8 +10,8 @@ import { Component } from "react"
  */
 const LazyLoad = (getComponent: any) => {
     class AsyncComponent extends Component {
-        static Component = null;
-        state = { Component: AsyncComponent.Component };
+        static Component = null
+        state = { Component: AsyncComponent.Component }
 
         componentDidMount() {
             if (!this.state.Component) {
@@ -29,7 +29,7 @@ const LazyLoad = (getComponent: any) => {
             return null
         }
     }
-    return AsyncComponent;
+    return AsyncComponent
 }
 
 export default LazyLoad

@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CatList /> matches snapshot 1`] = `
+<div
+  className="catList"
+>
+  <div
+    className="row"
+  >
+    <span
+      className="title"
+      data-testid="pageHeading"
+    >
+      Cat Browser
+    </span>
+  </div>
+  <div
+    className="wrapper"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-lg-3"
+      >
+        <div
+          className="paddedFlex selectArea"
+        >
+          <div>
+            <select
+              aria-label="Default select example"
+              className="dropDown form-select"
+              data-testid="breedDropdown"
+              onChange={[Function]}
+              value=""
+            >
+              <option
+                disabled={true}
+                value=""
+              >
+                Select Breed
+              </option>
+            </select>
+            
+          </div>
+          <button
+            className="btn btn-secondary"
+            data-testid="returnHomeBtn"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            Back to Home
+          </button>
+        </div>
+      </div>
+      <div
+        className="col-lg-9"
+      >
+        <div
+          className="paddedFlex 
+                            contentArea"
+          data-testid="listSection"
+        >
+          <div
+            className="spinnerComponentWrapper"
+          >
+            <div
+              className="spinnerWrapper"
+            >
+              <div
+                className="spinner-grow text-secondary"
+              />
+              <div
+                className="spinner-grow text-secondary"
+              />
+              <div
+                className="spinner-grow text-secondary"
+              />
+              <div
+                className="spinner-grow text-secondary"
+              />
+              <div
+                className="spinner-grow text-secondary"
+              />
+              <div
+                className="spinner-grow"
+                role="status"
+              >
+                <span
+                  className="visually-hidden"
+                >
+                  Loading...
+                </span>
+              </div>
+            </div>
+            <h1>
+              Loading Cat Breeds...
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

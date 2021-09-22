@@ -47,7 +47,7 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
                     <CardComponent
                         key={i?.id}
                         imgSrc={i?.url}
-                        size="23%"
+                        size='23%'
                         btnLabel={`Have a closer look`}
                         link={{
                             to: `${AppRoute.Cats}/${currentBreed}/${i?.id}`,
@@ -105,17 +105,17 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
 
     /**
      * @SPECS
-     * data-testid="pageHeading"
-     * data-testid="breedDropdown"
-     * data-testid="breedMoreBtn"
-     * data-testid="returnHomeBtn"
-     * data-testid="listSection"
+     * data-testid='pageHeading'
+     * data-testid='breedDropdown'
+     * data-testid='breedMoreBtn'
+     * data-testid='returnHomeBtn'
+     * data-testid='listSection'
      */
 
     return (
         <div className={styles.catList}>
-            <Row>
-                <span data-testid="pageHeading" className={styles.title}>Cat Browser</span>
+            <Row key={'pageHeading'}>
+                <span data-testid='pageHeading' className={styles.title}>Cat Browser</span>
             </Row>
             <div className={styles.wrapper}>
                 <Row>
@@ -123,7 +123,6 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
                         <div className={`${styles.paddedFlex} ${styles.selectArea}`}>
                             <div>
                                 <DropDown
-                                    data-testid="breedDropdown"
                                     options={Object.values(options)}
                                     onChange={onSelectBreed}
                                     selected={currentBreed}
@@ -132,8 +131,8 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
                                     !showBtn &&
                                     breed &&
                                     <Button
-                                        data-testid="breedMoreBtn"
-                                        variant="secondary"
+                                        data-testid='breedMoreBtn'
+                                        variant='secondary'
                                         onClick={() => dispatch(
                                             getCatBreed({
                                                 id: currentBreed,
@@ -147,8 +146,8 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
 
                             </div>
                             <Button
-                                data-testid="returnHomeBtn"
-                                variant="secondary"
+                                data-testid='returnHomeBtn'
+                                variant='secondary'
                                 onClick={() => history.push(`${AppRoute.Home}`)}
                             >
                                 Back to Home
@@ -157,7 +156,7 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
                     </Col>
                     <Col lg={9}>
                         <div
-                            data-testid="listSection"
+                            data-testid='listSection'
                             className={`${styles.paddedFlex} 
                             ${styles.contentArea}`}
                         >
@@ -190,7 +189,7 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
                                 // During first page load while fetching breed list
                                 loading &&
                                 Boolean(!Object.values(catsBreedList).length) &&
-                                <SpinnerComponent message="Loading Cat Breeds..." />
+                                <SpinnerComponent message='Loading Cat Breeds...' />
                             }
 
                         </div>

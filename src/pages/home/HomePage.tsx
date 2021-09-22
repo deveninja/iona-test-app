@@ -1,7 +1,7 @@
-import CardComponent from 'components/common/card/Card';
-import { useMemo } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { RouteComponentProps } from 'react-router-dom';
+import CardComponent from 'components/common/card/Card'
+import { useMemo } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+import { RouteComponentProps } from 'react-router-dom'
 
 import styles from './home.module.scss'
 

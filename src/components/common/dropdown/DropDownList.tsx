@@ -10,19 +10,20 @@ const DropDown: React.FC<DropDownProps> = (props: DropDownProps) => {
     const renderDropDown = useCallback((arr: DropDownType[]) => {
         return arr.map((item: DropDownType, index: number) => {
             return (
-                <option key={item.id + index} value={item.id}>{item.name}</option>
+                <option key={item.id} value={item.id}>{item.name}</option>
             )
         })
     }, [])
 
     return (
         <Form.Select
+            data-testid="breedDropdown"
             aria-label="Default select example"
             className={styles.dropDown}
             value={selected}
             onChange={onChange}
         >
-            <option value="" disabled>Select Breed</option>
+            <option key={''} value="" disabled>Select Breed</option>
             {renderDropDown(options)}
         </Form.Select>
     )

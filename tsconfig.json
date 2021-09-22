@@ -23,5 +23,8 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test/setupTests.js"
+  }
 }

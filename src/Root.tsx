@@ -1,5 +1,5 @@
-import { Provider } from 'react-redux';
-import Store from 'store';
+import { Provider } from 'react-redux'
+import Store from 'store'
 
 /**
  * @description - This will be used to improve testing suites and

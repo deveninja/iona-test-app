@@ -1,6 +1,6 @@
 import { getCat } from 'actions'
 import { Cat, CatList } from 'interfaces/cat'
-import { MatchParams, StateType } from 'interfaces/routeProps'
+import { MatchParams } from 'interfaces/routeProps'
 import React, { useEffect, useMemo, useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,7 +19,7 @@ const CatDetails: React.FC<RouteComponentProps<MatchParams>> = (props: RouteComp
 
 
     const dispatch = useDispatch()
-    const { state } = useLocation<StateType>()
+    const { state } = useLocation<any>()
 
     const { history, match }: RouteComponentProps<MatchParams> = props
     const { params } = match

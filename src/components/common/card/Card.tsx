@@ -18,6 +18,7 @@ const CardComponent = (props: CardComponentType) => {
 
     return (
         <Card
+            key={link?.to}
             style={{ width: size }}
             className={styles.card}
         >

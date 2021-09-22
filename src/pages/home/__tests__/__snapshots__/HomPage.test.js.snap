@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> matches snapshot 1`] = `
+<div
+  data-testid="mainSection"
+>
+  <div
+    className="toast-container position-absolute top-0 end-0 p-3"
+    style={
+      Object {
+        "color": "white",
+        "zIndex": 2,
+      }
+    }
+  />
+  <div
+    className="home container"
+  >
+    <div
+      className="cardSection"
+      data-testid="cardSection"
+    >
+      <div
+        className="row row"
+      >
+        <h1
+          data-testid="pageHeading"
+        >
+          Select Species
+        </h1>
+        <div
+          className="card col-lg"
+        >
+          <div
+            className="card card"
+            style={
+              Object {
+                "width": undefined,
+              }
+            }
+          >
+            <a
+              href="/cats"
+              onClick={[Function]}
+              style={
+                Object {
+                  "textDecoration": "none",
+                }
+              }
+            >
+              <div
+                className="imageWrapper"
+              >
+                <img
+                  alt="pet"
+                  src="https://i.pinimg.com/originals/83/01/aa/8301aa7d789494566ea9ea1e229c5a36.jpg"
+                />
+              </div>
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Feline
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div
+          className="card col-lg"
+        >
+          <div
+            className="card card"
+            style={
+              Object {
+                "width": undefined,
+              }
+            }
+          >
+            <a
+              href="/dogs"
+              onClick={[Function]}
+              style={
+                Object {
+                  "textDecoration": "none",
+                }
+              }
+            >
+              <div
+                className="imageWrapper"
+              >
+                <img
+                  alt="pet"
+                  src="https://i.pinimg.com/originals/de/41/7f/de417fa33ab730fab446d44b7749703d.jpg"
+                />
+              </div>
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Canine
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
