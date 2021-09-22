@@ -34,7 +34,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:heroku": "git add . && git commit -am 'Deployed' && git push origin master && git push heroku master"
+    "deploy:github": "git add . && git commit -am 'Deployed' && git push origin master",
+    "deploy:heroku": "yarn deploy:github && git push heroku master"
   },
   "eslintConfig": {
     "extends": [
