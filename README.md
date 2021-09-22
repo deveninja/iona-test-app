@@ -10,7 +10,9 @@ In the project directory, you can run:
 ### `yarn deploy:github`
 
 Build the project and push to github [iona-test-app](https://github.com/deveninja/iona-test-app)\
-And then deploy to heroku  [Live URL](https://iona-test-app.herokuapp.com/)
+And then deploy to heroku \
+[staging URL](https://iona-test-app.herokuapp.com/) \
+[production URL](https://iona-production-app.herokuapp.com/) \
 
 ### `yarn start`
 
