@@ -11,7 +11,7 @@ In the project directory, you can run:
 
 Build the project and push to github [iona-test-app](https://github.com/deveninja/iona-test-app)\
 And then deploy to heroku \
-[staging URL](https://iona-test-app.herokuapp.com/)
+[staging URL](https://iona-test-app.herokuapp.com/)\
 [production URL](https://iona-production-app.herokuapp.com/)
 
 ### `yarn start`
