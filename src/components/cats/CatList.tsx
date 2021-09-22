@@ -180,8 +180,17 @@ const CatList: React.FC<RouteComponentProps<MatchParams>> = (props: RouteCompone
 
                             {
                                 // While calling the endpoint
-                                loading && !cats?.[currentBreed]?.length &&
-                                <SpinnerComponent message="Loading list" />
+                                loading &&
+                                !cats?.[currentBreed]?.length &&
+                                Boolean(Object.values(catsBreedList).length) &&
+                                <SpinnerComponent />
+                            }
+
+                            {
+                                // During first page load while fetching breed list
+                                loading &&
+                                Boolean(!Object.values(catsBreedList).length) &&
+                                <SpinnerComponent message="Loading Cat Breeds..." />
                             }
 
                         </div>

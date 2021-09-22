@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.scss"],"names":[],"mappings":"AAAA,KACE,uBAAwB,CACxB,4BAA8B,CAC9B,aAAa,CAHf,OAMI,aAAyB","file":"main.4f93fde7.chunk.css","sourcesContent":["body {\n  background-color: bisque;\n  font-family: 'Gluten', cursive;\n  color:dimgray;\n\n  a {\n    color: hsl(240, 38%, 41%);\n  }\n  \n}"]}

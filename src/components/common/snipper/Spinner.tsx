@@ -2,7 +2,7 @@ import { Spinner } from 'react-bootstrap'
 
 import styles from './spinner.module.scss'
 
-const SpinnerComponent: React.FC<{ message: string }> = ({ message }: { message: string }) => {
+const SpinnerComponent: React.FC<{ message?: string }> = ({ message }: { message?: string }) => {
     return (
         <div className={styles.spinnerComponentWrapper}>
             <div className={styles.spinnerWrapper}>
@@ -15,6 +15,10 @@ const SpinnerComponent: React.FC<{ message: string }> = ({ message }: { message:
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
             </div>
+            {
+                message &&
+                <h1>{message}</h1>
+            }
         </div>
     )
 }
